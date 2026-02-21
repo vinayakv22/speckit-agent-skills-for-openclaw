@@ -1,4 +1,4 @@
-# SpecKit for OpenClaw 🦅
+# SpecKit for OpenClaw 🦞
 
 ### *Elevate your OpenClaw agent with Spec-Driven Development.*
 

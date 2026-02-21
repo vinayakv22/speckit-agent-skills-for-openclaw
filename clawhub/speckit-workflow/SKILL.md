@@ -7,7 +7,7 @@ metadata:
   source: custom/speckit-workflow
 ---
 
-# Speckit Workflow Skill 🦅
+# Speckit Workflow Skill 🦞
 
 This is the master orchestrator for the **SpecKit for OpenClaw** engineering workflow. It is designed to be the entry point for users on ClawHub.
 

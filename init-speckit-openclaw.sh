@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Init SpecKit for OpenClaw 🦅
+# Init SpecKit for OpenClaw 🦞
 # This script automates the setup of the SpecKit engineering workflow for OpenClaw agents.
 # It dynamically fetches templates from the official github/spec-kit repository.
 

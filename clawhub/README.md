@@ -1,4 +1,4 @@
-# SpecKit for OpenClaw 🦅
+# SpecKit for OpenClaw 🦞
 
 ### *The Professional Engineering Lifecycle for your Agent.*
 
