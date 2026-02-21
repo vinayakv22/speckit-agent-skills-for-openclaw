@@ -13,14 +13,14 @@ This is the master orchestrator for the **SpecKit for OpenClaw** engineering wor
 
 ## ⚠️ Security & Credentials
 
-This workflow is designed to automate `git commit` and `git push` operations to save progress.
+This workflow is designed to automate git operations to save progress and isolate work.
 
 **Agent Requirement:**
 Before starting the workflow or initializing a new project, you **MUST** ask the user:
-> "Do you want to enable automated `git commit` and `git push` for this project? (Yes/No)"
+> "Do you want to enable automated `git commit`, `git push`, and **branch creation** for this project? (Yes/No)"
 
-- **If YES**: Proceed with automated commits/pushes as described in the workflow. Ensure you have write access.
-- **If NO**: You **MUST NOT** perform any git operations. You will only write files locally. The user is responsible for version control.
+- **If YES**: Proceed with automated commits, pushes, and branch creation as described in the workflow. Ensure you have write access.
+- **If NO**: You **MUST NOT** perform any git operations (commits, pushes, or branch creation). You will only write files locally. The user is responsible for version control.
 
 ## 🚀 Step 1: Initialization
 
