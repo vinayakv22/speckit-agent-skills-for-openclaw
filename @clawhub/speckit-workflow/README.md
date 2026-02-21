@@ -30,6 +30,11 @@ This skill is designed for maximum agent autonomy and reliability:
 
 ---
 
+## 📂 Requirements
+
+- **OpenClaw Agent**
+- **Git Access**: The agent requires Read/Write access to the repository to save specifications, plans, and code changes. Ensure your environment is authenticated (e.g., via SSH keys or a credential helper).
+
 ## ⚙️ Project Setup
 
 This skill package comes pre-bundled with all necessary templates and sub-skills. No external downloads are required.
@@ -37,14 +42,7 @@ This skill package comes pre-bundled with all necessary templates and sub-skills
 To initialize a new project:
 1.  Ensure this skill is installed/available to your agent.
 2.  Activate the `speckit-workflow` skill.
-3.  Follow the skill's instructions to initialize the project with the bundled `.specify/` templates.
-
----
-
-## 📂 Requirements
-
-- **OpenClaw Agent**
-- **Python 3** (Required for some internal automation scripts in `.specify/scripts`).
+3.  The agent will automatically detect if the project is uninitialized and offer to copy the bundled `.specify/` templates to your project root.
 
 ---
 

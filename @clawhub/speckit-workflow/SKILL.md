@@ -9,17 +9,29 @@ metadata:
 
 # Speckit Workflow Skill 🦞
 
-This is the master orchestrator for the **SpecKit for OpenClaw** engineering workflow. It is designed to be the entry point for users on ClawHub.
+This is the master orchestrator for the **SpecKit for OpenClaw** engineering workflow.
+
+## ⚠️ Security & Credentials
+
+This workflow is designed to automate `git commit` and `git push` operations to save progress.
+
+**Agent Requirement:**
+Before starting the workflow or initializing a new project, you **MUST** ask the user:
+> "Do you want to enable automated `git commit` and `git push` for this project? (Yes/No)"
+
+- **If YES**: Proceed with automated commits/pushes as described in the workflow. Ensure you have write access.
+- **If NO**: You **MUST NOT** perform any git operations. You will only write files locally. The user is responsible for version control.
 
 ## 🚀 Step 1: Initialization
 
 If this project has not been initialized with SpecKit yet, you **MUST** ensure the `.specify/` directory is present in the project root.
 
 **Initialization Instructions for Agent:**
-1.  Check if `.specify/` exists in the project root.
-2.  If missing, copy the `.specify/` directory from this skill package (located at `./.specify/`) to `.specify/` in the project root.
+1.  **Ask for Git Permission** (see above).
+2.  Check if `.specify/` exists in the project root.
+3.  If missing, copy the `.specify/` directory from this skill package (located at `./.specify/`) to `.specify/` in the project root.
     - Create the destination directory if it doesn't exist.
-3.  Confirm successful initialization.
+4.  Confirm successful initialization.
 
 ---
 
