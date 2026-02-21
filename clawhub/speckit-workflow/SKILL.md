@@ -17,12 +17,12 @@ If this project has not been initialized with SpecKit yet, you **MUST** run the 
 
 **macOS / Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vinayak/speckit-agent-skills-for-openclaw/main/init-speckit-openclaw.sh | bash
+curl -fsSL https://github.com/vinayakv22/speckit-agent-skills-for-openclaw/releases/latest/download/init-speckit-openclaw.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/vinayak/speckit-agent-skills-for-openclaw/main/init-speckit-openclaw.ps1" -OutFile "init.ps1"; .\init.ps1
+Invoke-WebRequest -Uri "https://github.com/vinayakv22/speckit-agent-skills-for-openclaw/releases/latest/download/init-speckit-openclaw.ps1" -OutFile "init.ps1"; .\init.ps1
 ```
 
 **What this does**:

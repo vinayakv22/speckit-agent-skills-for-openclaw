@@ -36,12 +36,12 @@ Before the agent can utilize these specialized workflows, the project must be in
 
 **macOS / Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vinayak/speckit-agent-skills-for-openclaw/main/init-speckit-openclaw.sh | bash
+curl -fsSL https://github.com/vinayakv22/speckit-agent-skills-for-openclaw/releases/latest/download/init-speckit-openclaw.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/vinayak/speckit-agent-skills-for-openclaw/main/init-speckit-openclaw.ps1" -OutFile "init.ps1"; .\init.ps1
+Invoke-WebRequest -Uri "https://github.com/vinayakv22/speckit-agent-skills-for-openclaw/releases/latest/download/init-speckit-openclaw.ps1" -OutFile "init.ps1"; .\init.ps1
 ```
 
 This sets up the `.openclaw/skills/` and `.specify/` directories that the agent will interact with during the workflow.
