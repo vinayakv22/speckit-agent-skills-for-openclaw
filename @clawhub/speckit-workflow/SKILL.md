@@ -13,22 +13,13 @@ This is the master orchestrator for the **SpecKit for OpenClaw** engineering wor
 
 ## 🚀 Step 1: Initialization
 
-If this project has not been initialized with SpecKit yet, you **MUST** run the initialization script in the **root directory of your project**:
+If this project has not been initialized with SpecKit yet, you **MUST** ensure the `.specify/` directory is present in the project root.
 
-**macOS / Linux:**
-```bash
-curl -fsSL https://github.com/vinayakv22/speckit-agent-skills-for-openclaw/releases/latest/download/init-speckit-openclaw.sh | bash
-```
-
-**Windows (PowerShell):**
-```powershell
-Invoke-WebRequest -Uri "https://github.com/vinayakv22/speckit-agent-skills-for-openclaw/releases/latest/download/init-speckit-openclaw.ps1" -OutFile "init.ps1"; .\init.ps1
-```
-
-**What this does**:
-- Creates the `.openclaw/skills/` directory.
-- Populates it with 9 specialized engineering skills (analyze, checklist, clarify, constitution, implement, plan, specify, tasks, taskstoissues).
-- Sets up the `.specify/` project memory structure.
+**Initialization Instructions for Agent:**
+1.  Check if `.specify/` exists in the project root.
+2.  If missing, copy the `.specify/` directory from this skill package (located at `./.specify/`) to `.specify/` in the project root.
+    - Create the destination directory if it doesn't exist.
+3.  Confirm successful initialization.
 
 ---
 
@@ -36,7 +27,7 @@ Invoke-WebRequest -Uri "https://github.com/vinayakv22/speckit-agent-skills-for-o
 
 Before starting or when returning to a project, you **MUST** determine the current state by checking for the existence of SpecKit artifacts:
 
-1.  **Check for Initialization**: Verify if `.openclaw/skills/` and `.specify/` exist.
+1.  **Check for Initialization**: Verify if `.specify/` exists.
 2.  **Determine Current Phase**:
     - If `.specify/memory/constitution.md` exists -> **Constitution** complete.
     - If `specs/<feature>/spec.md` exists -> **Specify** complete.
@@ -53,7 +44,7 @@ Always resume from the first incomplete phase in the [Execution Order](#the-exec
 Once initialized, you **MUST** follow the canonical Spec-kit order by delegating to sub-agents.
 
 ### When to Create a Sub-Agent:
-For **each phase** below, you should create or delegate to a specialized sub-agent that uses the corresponding skill found in `.openclaw/skills/`.
+For **each phase** below, you should create or delegate to a specialized sub-agent that uses the corresponding skill found in the `subskills/` directory relative to this skill file (`./subskills/`).
 
 ### The Execution Order:
 
@@ -61,7 +52,7 @@ For **each phase** below, you should create or delegate to a specialized sub-age
 2.  📝 **Specify**: Delegate to `speckit-specify`. Transform requirements into a formal `spec.md`.
 3.  🔍 **Clarify** (Optional): Delegate to `speckit-clarify` if the specification is ambiguous.
 4.  🏗️ **Plan**: Delegate to `speckit-plan`. Derive technical design and implementation architecture.
-5.  📋 **Tasks**: Delegate to `speckit-tasks`. Break the plan into actionable micro-tasks.
+5.  📋 **Tasks**: Delegate to `speckit-tasks`. Break the plan into actionable task lists.
 6.  ⚖️ **Analyze** (Optional): Delegate to `speckit-analyze` for cross-artifact consistency.
 7.  👷 **Implement**: Delegate to `speckit-implement`.
 

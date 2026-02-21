@@ -61,8 +61,8 @@ fi
 echo -e "Using $PYTHON_BIN for transformation..."
 
 # Target directories
-SKILLS_DIR=".openclaw/skills"
-SPECIFY_DIR=".specify"
+SKILLS_DIR="@clawhub/speckit-workflow/subskills"
+SPECIFY_DIR="@clawhub/speckit-workflow/.specify"
 
 # 1. Fetch latest version tag from GitHub API
 echo -e "Fetching latest release version from GitHub..."
@@ -137,7 +137,7 @@ def transform_content(command_name, body):
     new_lines = []
     for line in lines:
         if command_name == "constitution" and "Read each command file in" in line:
-            new_lines.append(line)
+            continue
         else:
             line = re.sub(r'\bCommand\b', 'Skill', line)
             line = re.sub(r'\bCOMMAND\b', 'SKILL', line)
@@ -148,7 +148,7 @@ def transform_content(command_name, body):
 def main():
     repo_root = Path.cwd()
     source_dir = Path(sys.argv[1]).resolve()
-    target_dir = repo_root / ".openclaw" / "skills"
+    target_dir = repo_root / "@clawhub" / "speckit-workflow" / "subskills"
     target_dir.mkdir(parents=True, exist_ok=True)
     command_files = sorted(source_dir.glob("*.md"))
     for cmd_file in command_files:

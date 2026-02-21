@@ -32,26 +32,19 @@ This skill is designed for maximum agent autonomy and reliability:
 
 ## ⚙️ Project Setup
 
-Before the agent can utilize these specialized workflows, the project must be initialized to include the necessary local skills and templates. Run the appropriate command in your **terminal within the project's root directory**:
+This skill package comes pre-bundled with all necessary templates and sub-skills. No external downloads are required.
 
-**macOS / Linux:**
-```bash
-curl -fsSL https://github.com/vinayakv22/speckit-agent-skills-for-openclaw/releases/latest/download/init-speckit-openclaw.sh | bash
-```
-
-**Windows (PowerShell):**
-```powershell
-Invoke-WebRequest -Uri "https://github.com/vinayakv22/speckit-agent-skills-for-openclaw/releases/latest/download/init-speckit-openclaw.ps1" -OutFile "init.ps1"; .\init.ps1
-```
-
-This sets up the `.openclaw/skills/` and `.specify/` directories that the agent will interact with during the workflow.
+To initialize a new project:
+1.  Ensure this skill is installed/available to your agent.
+2.  Activate the `speckit-workflow` skill.
+3.  Follow the skill's instructions to initialize the project with the bundled `.specify/` templates.
 
 ---
 
 ## 📂 Requirements
 
 - **OpenClaw Agent**
-- **Python 3**, **curl**, and **unzip** (The `init` script will guide you if these are missing).
+- **Python 3** (Required for some internal automation scripts in `.specify/scripts`).
 
 ---
 
