@@ -1,0 +1,40 @@
+# SpecKit for OpenClaw - Git Ignore
+
+# Project-Specific Ignores (Exclude converted skills and local project memory)
+.openclaw/skills/speckit-*
+.specify/memory/constitution.md
+.specify/scripts/bash/
+.specify/templates/
+.claude/
+.gemini/
+
+# Feature-specific specs (if you want to keep the repo only as a tool, not for your own work)
+specs/
+
+# Test Scaffolds (Exclude local verification environments)
+test-scaffold*/
+
+# OS-Specific
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# Editor-Specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+.env
+
+# Git (Safety for git-in-git scenarios)
+.git/
