@@ -53,7 +53,7 @@ SCRIPT_DIR="$(CDPATH="" cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/common.sh"
 
 # Get all paths and variables from common functions
-eval $(get_feature_paths)
+load_feature_paths
 
 NEW_PLAN="$IMPL_PLAN"  # Alias for compatibility with existing code
 AGENT_TYPE="${1:-}"
@@ -104,6 +104,15 @@ log_error() {
 
 log_warning() {
     echo "WARNING: $1" >&2
+}
+
+# Sanitize input to prevent prompt injection and sed delimiter issues
+sanitize_input() {
+    local input="$1"
+    # 1. Remove common prompt injection patterns
+    # 2. Remove characters that could break sed (specifically the | delimiter used later)
+    # 3. Remove shell metacharacters just in case
+    echo "$input" | sed -E 's/\[IGNORE PREVIOUS INSTRUCTIONS\]//gi; s/\[SYSTEM\]//gi; s/\[USER\]//gi; s/\|//g; s/[`$(){};&<>]//g' | xargs
 }
 
 # Cleanup function for temporary files
@@ -158,12 +167,18 @@ extract_plan_field() {
     local field_pattern="$1"
     local plan_file="$2"
     
-    grep "^\*\*${field_pattern}\*\*: " "$plan_file" 2>/dev/null | \
+    local raw_value=$(grep "^\*\*${field_pattern}\*\*: " "$plan_file" 2>/dev/null | \
         head -1 | \
         sed "s|^\*\*${field_pattern}\*\*: ||" | \
         sed 's/^[ \t]*//;s/[ \t]*$//' | \
         grep -v "NEEDS CLARIFICATION" | \
-        grep -v "^N/A$" || echo ""
+        grep -v "^N/A$")
+    
+    if [[ -n "$raw_value" ]]; then
+        sanitize_input "$raw_value"
+    else
+        echo ""
+    fi
 }
 
 parse_plan_data() {
@@ -302,10 +317,10 @@ create_new_agent_file() {
     language_conventions=$(get_language_conventions "$NEW_LANG")
     
     # Perform substitutions with error checking using safer approach
-    # Escape special characters for sed by using a different delimiter or escaping
-    local escaped_lang=$(printf '%s\n' "$NEW_LANG" | sed 's/[\[\.*^$()+{}|]/\\&/g')
-    local escaped_framework=$(printf '%s\n' "$NEW_FRAMEWORK" | sed 's/[\[\.*^$()+{}|]/\\&/g')
-    local escaped_branch=$(printf '%s\n' "$CURRENT_BRANCH" | sed 's/[\[\.*^$()+{}|]/\\&/g')
+    # Escape special characters for sed
+    local escaped_lang=$(printf '%s\n' "$NEW_LANG" | sed 's/[[\.*^$()+{}|]/\\&/g')
+    local escaped_framework=$(printf '%s\n' "$NEW_FRAMEWORK" | sed 's/[[\.*^$()+{}|]/\\&/g')
+    local escaped_branch=$(printf '%s\n' "$CURRENT_BRANCH" | sed 's/[[\.*^$()+{}|]/\\&/g')
     
     # Build technology stack and recent change strings conditionally
     local tech_stack

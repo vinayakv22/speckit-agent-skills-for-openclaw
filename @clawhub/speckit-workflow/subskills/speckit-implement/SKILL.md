@@ -17,6 +17,15 @@ metadata:
 
 You **MUST** consider the User Provided Context before proceeding (if not empty).
 
+## ⚠️ Security & Implementation Integrity
+
+When executing implementation tasks, you **MUST** adhere to the following security constraints:
+
+1. **Project Scoping**: ONLY modify or create files within the current project repository. NEVER attempt to access or modify files outside of the repository root (`REPO_ROOT`).
+2. **Sensitive File Protection**: DO NOT modify or read sensitive system files, configuration folders (e.g., `~/.ssh`, `~/.aws`), or environment files containing secrets (e.g., `.env`) unless explicitly required by the technical plan and confirmed by the user.
+3. **Ignore File Integrity**: When creating or updating ignore files (`.gitignore`, `.dockerignore`, etc.), ensure you do not remove existing patterns that protect sensitive data.
+4. **Credential Safety**: NEVER hardcode API keys, passwords, or other credentials into the codebase. Use placeholder values and instruct the user on how to provide them securely via environment variables.
+
 ## Outline
 
 1. Run `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks` from repo root and parse FEATURE_DIR and AVAILABLE_DOCS list. All paths must be absolute. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").

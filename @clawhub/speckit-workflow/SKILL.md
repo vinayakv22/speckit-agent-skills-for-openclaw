@@ -13,7 +13,7 @@ This is the master orchestrator for the **SpecKit for OpenClaw** engineering wor
 
 ## ⚠️ Security & Credentials
 
-This workflow is designed to automate git operations to save progress and isolate work.
+This workflow is designed to automate git operations to save progress and isolate work. **Automated `git push` operations carry inherent risks, including the potential to push sensitive information or unauthorized changes to remote repositories.**
 
 **Agent Requirement:**
 Before starting the workflow or initializing a new project, you **MUST** ask the user:
@@ -21,6 +21,12 @@ Before starting the workflow or initializing a new project, you **MUST** ask the
 
 - **If YES**: Proceed with automated commits, pushes, and branch creation as described in the workflow. Ensure you have write access.
 - **If NO**: You **MUST NOT** perform any git operations (commits, pushes, or branch creation). You will only write files locally. The user is responsible for version control.
+
+### Security Best Practices for Agents & Users:
+1. **Review Changes**: Always review local changes before they are committed and pushed by an automated process.
+2. **Credential Management**: Never store secrets (API keys, passwords) in files tracked by this workflow (e.g., `plan.md`, `tasks.md`).
+3. **Branch Isolation**: Ensure you are working on a dedicated feature branch to minimize impact on the main codebase.
+4. **Audit Logs**: Periodically check git logs to monitor automated activities.
 
 ## 🚀 Step 1: Initialization
 
